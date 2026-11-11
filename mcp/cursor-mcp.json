@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "kizuki-rag": {
+      "url": "https://mcp.apify.com?tools=kizukidata/youtube-transcripts,kizukidata/pdf-to-markdown,kizukidata/url-to-markdown"
+    },
+    "kizuki-hiring": {
+      "url": "https://mcp.apify.com?tools=kizukidata/linkedin-jobs-feed,kizukidata/linkedin-company-monitor"
+    },
+    "kizuki-news": {
+      "url": "https://mcp.apify.com?tools=kizukidata/google-news-feed,kizukidata/youtube-channel-monitor,kizukidata/telegram-channel-feed"
+    }
+  }
+}
