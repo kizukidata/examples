@@ -1,0 +1,8 @@
+{
+  "queries": ["electric vehicles"],
+  "edition": "US:en",
+  "timespan": "24h",
+  "onlyNewItems": true,
+  "resolveArticleUrls": true,
+  "maxItems": 25
+}

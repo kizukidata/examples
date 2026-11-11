@@ -1,0 +1,6 @@
+{
+  "channels": ["durov"],
+  "maxPostsPerChannel": 20,
+  "onlyNewItems": true,
+  "maxItems": 20
+}

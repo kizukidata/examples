@@ -1,0 +1,7 @@
+{
+  "channels": ["@AndrejKarpathy"],
+  "mode": "videos",
+  "maxVideosPerChannel": 3,
+  "onlyNewItems": true,
+  "maxItems": 20
+}

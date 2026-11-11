@@ -1,0 +1,6 @@
+{
+  "creators": ["notepro"],
+  "maxArticlesPerCreator": 10,
+  "onlyNewItems": true,
+  "maxItems": 20
+}

@@ -1,0 +1,7 @@
+{
+  "queries": ["Nike"],
+  "regions": ["DE", "FR"],
+  "days": 30,
+  "onlyChanges": true,
+  "maxItems": 30
+}

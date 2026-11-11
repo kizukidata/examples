@@ -1,0 +1,5 @@
+{
+  "urls": ["https://apify.com/kizukidata"],
+  "maxItems": 1,
+  "maxCharsPerPage": 20000
+}
