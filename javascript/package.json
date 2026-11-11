@@ -1,0 +1,14 @@
+{
+  "name": "kizukidata-examples",
+  "private": true,
+  "type": "module",
+  "description": "Examples for the Kizuki Apify Actors (MIT)",
+  "scripts": {
+    "rag": "node rag_ingest.mjs",
+    "hiring": "node hiring_signals.mjs",
+    "news": "node news_digest.mjs"
+  },
+  "dependencies": {
+    "apify-client": "^2.26.0"
+  }
+}
