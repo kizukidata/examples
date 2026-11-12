@@ -37,4 +37,4 @@ Values can come from earlier nodes instead of being fixed. The node accepts an e
 
 **New jobs into a sheet.** Schedule Trigger (every hour) > Apify node with `bodies/linkedin-jobs-feed.json` > Google Sheets append. The second run inserts only the postings that were not in the first.
 
-Prices are per returned row, so an empty day costs only the run start fee. Free tier, per row: youtube-transcripts $0.0020, pdf-to-markdown $0.0022, url-to-markdown $0.0014, linkedin-jobs-feed $0.0012, linkedin-company-monitor $0.0020, google-news-feed $0.0017, telegram-channel-feed $0.0020, youtube-channel-monitor $0.0011, note-articles-feed $0.0020, tiktok-ads-monitor $0.0018. No per-item charge when an input yields nothing.
+Prices are per returned row, so an empty day costs only the run start fee. Free tier, per row: youtube-transcripts $0.0010, pdf-to-markdown $0.0016, url-to-markdown $0.00033, linkedin-jobs-feed $0.00033, linkedin-company-monitor $0.00129, google-news-feed $0.00136, telegram-channel-feed $0.00028, youtube-channel-monitor $0.00024, note-articles-feed $0.00121, tiktok-ads-monitor $0.00033. No per-item charge when an input yields nothing.
