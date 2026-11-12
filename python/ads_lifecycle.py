@@ -1,6 +1,6 @@
 """Ad lifecycle for a few EU TikTok advertisers: what is new, scaling or stopped.
 
-Price at the Free tier, per returned row: tiktok-ads-monitor $0.0018.
+Price at the Free tier, per returned row: tiktok-ads-monitor $0.00033.
 No per-item charge when an input yields nothing; Apify's run start fee still
 applies. With onlyChanges on, ACTIVE ads are skipped and not charged.
 
