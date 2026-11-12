@@ -49,6 +49,8 @@ Apify Free tier prices per returned row, November 2026. A higher Apify plan lowe
 | `youtube-channel-monitor` | one channel, video or comment row | $0.00024 | 20,833 rows |
 | `note-articles-feed` | one note.com article | $0.00121 | 4,132 articles |
 | `tiktok-ads-monitor` | one ad | $0.00033 | 15,151 ads |
+| `wechat-article-reader` | one WeChat Official Account article: text, Markdown, account data | $0.0016 | 3,125 articles |
+| `mcp-server-directory` | one public MCP server merged from three directories | $0.00036 | 13,888 servers |
 
 A run that finds nothing has no per-row charge. `pdf-to-markdown` returns a PDF without a text layer as an uncharged row with `status: "scan"` and the pages that need OCR; a PDF it cannot download comes back as an uncharged `status: "failed"` row. A page that is not a PDF or a file it cannot read is listed in the run's `OUTPUT` record, and neither is charged. A blocked LinkedIn job page and an unknown Telegram channel are rows in the dataset with the reason. `url-to-markdown` writes no row for a page it cannot read and reports it in the run's `OUTPUT` record under `skippedInputs`. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event; USD 0.0001 at 2 GB, for example). Each Actor's page shows its default memory.
 
@@ -110,7 +112,7 @@ Check `error` (most Actors), `status` (PDF and company pages) or `detailsStatus`
 
 ## Not official data
 
-Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, TikTok or note. You are responsible for how you use the data, including any licence or privacy rule that applies to it.
+Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, TikTok, note or Tencent, or by the MCP project, Smithery or the maintainers of the awesome-mcp-servers list. You are responsible for how you use the data, including any licence or privacy rule that applies to it.
 
 ## 日本語の要点
 
