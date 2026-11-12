@@ -1,7 +1,7 @@
 """New LinkedIn jobs and changed company pages in one pass.
 
-Price at the Free tier, per returned row: linkedin-jobs-feed $0.0012,
-linkedin-company-monitor $0.0020. No per-item charge when an input yields
+Price at the Free tier, per returned row: linkedin-jobs-feed $0.00033,
+linkedin-company-monitor $0.00129. No per-item charge when an input yields
 nothing; Apify's run start fee still applies.
 
 Run (APIFY_TOKEN set): python hiring_signals.py
