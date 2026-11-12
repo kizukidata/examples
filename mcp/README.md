@@ -82,4 +82,4 @@ Run the Apify MCP server locally through stdio (Node.js 22 or later). Every Acto
 
 Each Actor becomes one tool. `call-actor` (or the Actor's own tool) starts a run, waits up to 45 seconds and returns the run status and the dataset ID; `get-dataset-items` reads the rows. A row that carries an `error`, `status: "scan"`/`"failed"`, or `detailsStatus: "blocked"` is returned with the reason and is not charged.
 
-Cost: same per-row prices as the API: youtube-transcripts $0.0020, pdf-to-markdown $0.0022, url-to-markdown $0.0014, google-news-feed $0.0017, telegram-channel-feed $0.0020, youtube-channel-monitor $0.0011, linkedin-jobs-feed $0.0012, linkedin-company-monitor $0.0020. Free tier. No per-item charge when an input yields nothing; the run start fee still applies.
+Cost: same per-row prices as the API: youtube-transcripts $0.0010, pdf-to-markdown $0.0016, url-to-markdown $0.00033, google-news-feed $0.00136, telegram-channel-feed $0.00028, youtube-channel-monitor $0.00024, linkedin-jobs-feed $0.00033, linkedin-company-monitor $0.00129. Free tier. No per-item charge when an input yields nothing; the run start fee still applies.
