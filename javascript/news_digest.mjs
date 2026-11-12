@@ -1,7 +1,7 @@
 // A morning digest from Google News, Telegram channels and YouTube channels.
 //
-// Price at the Free tier, per returned row: google-news-feed $0.0017,
-// telegram-channel-feed $0.0020, youtube-channel-monitor $0.0011. No per-item
+// Price at the Free tier, per returned row: google-news-feed $0.00136,
+// telegram-channel-feed $0.00028, youtube-channel-monitor $0.00024. No per-item
 // charge when an input yields nothing; Apify's run start fee still applies.
 //
 // Run: npm install && node news_digest.mjs   (with APIFY_TOKEN set)
