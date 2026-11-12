@@ -1,7 +1,7 @@
 // Turn two YouTube talks, a PDF and a web page into Markdown and RAG chunks.
 //
-// Price at the Free tier, per returned row: youtube-transcripts $0.0020,
-// pdf-to-markdown $0.0022, url-to-markdown $0.0014. No per-item charge when an
+// Price at the Free tier, per returned row: youtube-transcripts $0.0010,
+// pdf-to-markdown $0.0016, url-to-markdown $0.00033. No per-item charge when an
 // input yields nothing; Apify's run start fee still applies.
 //
 // Run: npm install && node rag_ingest.mjs   (with APIFY_TOKEN set)
