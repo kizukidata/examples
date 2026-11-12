@@ -39,16 +39,16 @@ Apify Free tier prices per returned row, November 2026. A higher Apify plan lowe
 
 | Actor | One row | Per row | Rows for the USD 5 monthly free credit (start fees aside) |
 |---|---|---|---|
-| `youtube-transcripts` | one video's captions: Markdown, segments, chunks | $0.0020 | 2,500 videos |
-| `pdf-to-markdown` | one PDF as page-numbered Markdown | $0.0022 | 2,272 PDFs |
-| `url-to-markdown` | one page's main content as Markdown | $0.0014 | 3,571 pages |
-| `linkedin-jobs-feed` | one job posting, with the job page read | $0.0012 | 4,166 jobs |
-| `linkedin-company-monitor` | one company page | $0.0020 | 2,500 companies |
-| `google-news-feed` | one article | $0.0017 | 2,941 articles |
-| `telegram-channel-feed` | one post | $0.0020 | 2,500 posts |
-| `youtube-channel-monitor` | one channel, video or comment row | $0.0011 | 4,545 rows |
-| `note-articles-feed` | one note.com article | $0.0020 | 2,500 articles |
-| `tiktok-ads-monitor` | one ad | $0.0018 | 2,777 ads |
+| `youtube-transcripts` | one video's captions: Markdown, segments, chunks | $0.0010 | 5,000 videos |
+| `pdf-to-markdown` | one PDF as page-numbered Markdown | $0.0016 | 3,125 PDFs |
+| `url-to-markdown` | one page's main content as Markdown | $0.00033 | 15,151 pages |
+| `linkedin-jobs-feed` | one job posting, with the job page read | $0.00033 | 15,151 jobs |
+| `linkedin-company-monitor` | one company page | $0.00129 | 3,875 companies |
+| `google-news-feed` | one article | $0.00136 | 3,676 articles |
+| `telegram-channel-feed` | one post | $0.00028 | 17,857 posts |
+| `youtube-channel-monitor` | one channel, video or comment row | $0.00024 | 20,833 rows |
+| `note-articles-feed` | one note.com article | $0.00121 | 4,132 articles |
+| `tiktok-ads-monitor` | one ad | $0.00033 | 15,151 ads |
 
 A run that finds nothing has no per-row charge. `pdf-to-markdown` returns a PDF without a text layer as an uncharged row with `status: "scan"` and the pages that need OCR; a PDF it cannot download comes back as an uncharged `status: "failed"` row. A page that is not a PDF or a file it cannot read is listed in the run's `OUTPUT` record, and neither is charged. A blocked LinkedIn job page and an unknown Telegram channel are rows in the dataset with the reason. `url-to-markdown` writes no row for a page it cannot read and reports it in the run's `OUTPUT` record under `skippedInputs`. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event; USD 0.0001 at 2 GB, for example). Each Actor's page shows its default memory.
 
