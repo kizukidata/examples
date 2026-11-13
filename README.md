@@ -51,14 +51,15 @@ Apify Free tier prices per returned row, November 2026. A higher Apify plan lowe
 | `tiktok-ads-monitor` | one ad | $0.00033 | 15,151 ads |
 | `wechat-article-reader` | one WeChat Official Account article: text, Markdown, account data | $0.0016 | 3,125 articles |
 | `mcp-server-directory` | one public MCP server merged from three directories | $0.00036 | 13,888 servers |
+| `ucp-readiness` | one online store with a UCP profile: version, capabilities, MCP endpoint | $0.0020 | 2,500 stores with a profile |
 
-A run that finds nothing has no per-row charge. `pdf-to-markdown` returns a PDF without a text layer as an uncharged row with `status: "scan"` and the pages that need OCR; a PDF it cannot download comes back as an uncharged `status: "failed"` row. A page that is not a PDF or a file it cannot read is listed in the run's `OUTPUT` record, and neither is charged. A blocked LinkedIn job page and an unknown Telegram channel are rows in the dataset with the reason. `url-to-markdown` writes no row for a page it cannot read and reports it in the run's `OUTPUT` record under `skippedInputs`. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event; USD 0.0001 at 2 GB, for example). Each Actor's page shows its default memory.
+A run that finds nothing has no per-row charge. `pdf-to-markdown` returns a PDF without a text layer as an uncharged row with `status: "scan"` and the pages that need OCR; a PDF it cannot download comes back as an uncharged `status: "failed"` row. A page that is not a PDF or a file it cannot read is listed in the run's `OUTPUT` record, and neither is charged. A blocked LinkedIn job page and an unknown Telegram channel are rows in the dataset with the reason. `url-to-markdown` writes no row for a page it cannot read and reports it in the run's `OUTPUT` record under `skippedInputs`. `ucp-readiness` writes a row for every store it checks (with `changedOnly` on, only for stores that changed) and charges only `status: "supported"` rows; a store without a profile, a refusal or an error is an uncharged row with the reason. Apify's run start fee applies to every run: USD 0.00005 per GB of memory (one event per GB, minimum one event; USD 0.0001 at 2 GB, for example). Each Actor's page shows its default memory.
 
 ## Cost control in the examples
 
 - `maxItems` bounds the rows in one run. Every example sets it.
 - `onlyNewItems: true` (jobs, news, Telegram, YouTube, note) returns only rows that an earlier run with the same input did not return, and charges only those. State is kept for 90 days in a key-value store in your own Apify account.
-- `onlyChanges: true` (company pages, TikTok ads) returns only rows whose tracked fields moved.
+- `onlyChanges: true` (company pages, TikTok ads) and `changedOnly: true` (`ucp-readiness`) return only rows whose tracked fields moved.
 - The first run with `onlyNewItems` returns everything inside the window, so start with a small `maxItems`.
 
 The examples do not use Apify's `maxTotalChargeUsd` run option; set it in the n8n node, the Console or the API if you want a hard cap on a run.
@@ -76,7 +77,7 @@ curl -s -X POST "https://api.apify.com/v2/acts/kizukidata~url-to-markdown/run-sy
 
 ## From an AI agent (MCP)
 
-Three bundles are in the official MCP Registry: `io.github.kizukidata/hiring-signals`, `io.github.kizukidata/news-monitoring`, `io.github.kizukidata/rag-ingest`. The MCP server at `https://mcp.apify.com` takes a `tools` parameter, so an agent can load just one bundle:
+Eight bundles are in the official MCP Registry: `io.github.kizukidata/hiring-signals`, `io.github.kizukidata/news-monitoring`, `io.github.kizukidata/rag-ingest`, `io.github.kizukidata/eu-tenders`, `io.github.kizukidata/social-monitoring`, `io.github.kizukidata/work-visa-data`, `io.github.kizukidata/mcp-server-directory`, `io.github.kizukidata/ucp-readiness`. The MCP server at `https://mcp.apify.com` takes a `tools` parameter, so an agent can load just one bundle:
 
 ```bash
 claude mcp add --transport http kizuki-rag "https://mcp.apify.com?tools=kizukidata/youtube-transcripts,kizukidata/pdf-to-markdown,kizukidata/url-to-markdown"
@@ -112,13 +113,13 @@ Check `error` (most Actors), `status` (PDF and company pages) or `detailsStatus`
 
 ## Not official data
 
-Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, TikTok, note or Tencent, or by the MCP project, Smithery or the maintainers of the awesome-mcp-servers list. You are responsible for how you use the data, including any licence or privacy rule that applies to it.
+Kizuki is an independent developer on Apify Store. The Actors are unofficial and not affiliated with or endorsed by Apify, LinkedIn, Google, YouTube, Telegram, TikTok, note or Tencent, or by the UCP project, the MCP project, Smithery or the maintainers of the awesome-mcp-servers list. You are responsible for how you use the data, including any licence or privacy rule that applies to it.
 
 ## 日本語の要点
 
 - このリポジトリは Kizuki の Actor を、用途ごと（RAG 取り込み・採用の変化・ニュースの朝のまとめ・広告の変化）に API・Python・JavaScript・MCP・n8n から使う例です。MIT で、書き換えて使えます。
 - トークンは環境変数 `APIFY_TOKEN` から読みます。値はどのファイルにも入っていません。
 - 値段は 1 行あたり（Free の段、2026-11 の時点）。例ごとに、その Actor の値段を書いてあります。Free の月 USD 5 で何件ほど試せるかも表にしています。
-- 入力を処理して 0 件だったときは、1 件あたりの課金はありません。テキストの無い PDF は `status: "scan"` の行で返り、課金されません。ダウンロードできなかった PDF は `status: "failed"` の行で返り、これも課金されません。PDF でないページや読めないファイルは run の `OUTPUT` に載り、どちらも課金されません。読めない URL は行を作らず、run の `OUTPUT` の `skippedInputs` に残ります。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。2 GB なら USD 0.0001。既定のメモリは各 Actor の頁）がかかります。
+- 入力を処理して 0 件だったときは、1 件あたりの課金はありません。テキストの無い PDF は `status: "scan"` の行で返り、課金されません。ダウンロードできなかった PDF は `status: "failed"` の行で返り、これも課金されません。PDF でないページや読めないファイルは run の `OUTPUT` に載り、どちらも課金されません。読めない URL は行を作らず、run の `OUTPUT` の `skippedInputs` に残ります。UCP の確かめは、調べた店ごとに行を返し（changedOnly のときは変わった店だけ）、プロフィールを返した店（`status: "supported"`）だけ課金します。走らせるたびに Apify の起動料（1 GB ごとに USD 0.00005、1 GB 未満でも 1 回分。2 GB なら USD 0.0001。既定のメモリは各 Actor の頁）がかかります。
 - `onlyNewItems` / `onlyChanges` を付けると、前回と同じ入力で返した行は返さず、課金もしません（状態は自分のアカウントの key-value store に 90 日残ります）。最初の 1 回は窓の中の全部が返るので、`maxItems` を小さくして始めてください。
-- MCP は 3 つのまとめ（hiring-signals・news-monitoring・rag-ingest）を公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを読み込めます。
+- MCP は 8 つのまとめ（hiring-signals・news-monitoring・rag-ingest・eu-tenders・social-monitoring・work-visa-data・mcp-server-directory・ucp-readiness）を公式の MCP Registry に置いています。`https://mcp.apify.com?tools=...` の形で、使う Actor だけを読み込めます。
